@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -18,6 +20,23 @@ using Windows.UI.Xaml.Navigation;
 
 namespace App53
 {
+    public class ViewModel : INotifyPropertyChanged
+    {
+        private string testData;
+        public string TestData
+        {
+            get { return testData; }
+            set { testData = value; RaisePropertyChanged(); }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void RaisePropertyChanged([CallerMemberName] string propName = null)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(propName));
+        }
+    }
+
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
@@ -26,6 +45,7 @@ namespace App53
         public MainPage()
         {
             this.InitializeComponent();
+            this.DataContext = new ViewModel();
         }
 
 
@@ -45,6 +65,11 @@ namespace App53
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             TestBox.Text = "standard";
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            (this.DataContext as ViewModel).TestData = DateTime.Now.ToString();
         }
 
     }

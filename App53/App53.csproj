@@ -115,6 +115,7 @@
     </Compile>
     <Compile Include="Behaviors\BehaviorBase.cs" />
     <Compile Include="Behaviors\ControlHelper.cs" />
+    <Compile Include="Behaviors\DataWatcherBehavior.cs" />
     <Compile Include="Behaviors\PropertyWatcherBehavior.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>

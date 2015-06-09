@@ -20,6 +20,7 @@
             </interactivity:Interaction.Behaviors>
         </TextBox>
         <Button Click="Button_Click" Content="Reset"/>
+        <Button Click="Button_Click_1" Content="Update Datacontext"/>
         <Hub x:Name="hubbie" Header="My Hub">
             <HubSection Header="First">
                 <DataTemplate>
@@ -67,6 +68,11 @@
                 <DataTemplate>
                     <UserControl>
                         <Border>
+                            <interactivity:Interaction.Behaviors>
+                                <behaviors:DataWatcherBehavior Data="{Binding TestData}">
+                                    <actions:GotoStateAction Element="{Binding ElementName=txtBlock}" StateName="standard" />
+                                </behaviors:DataWatcherBehavior>
+                            </interactivity:Interaction.Behaviors>
                             <TextBlock x:Name="txtBlock" Text="{Binding Text, ElementName=TestBox}">
                                 <interactivity:Interaction.Behaviors>
                                     <behaviors:PropertyWatcherBehavior PropertyName="Text">
