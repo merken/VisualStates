@@ -1,0 +1,127 @@
+﻿<Page x:Class="App53.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:actions="using:App53.Actions"
+      xmlns:behaviors="using:App53.Behaviors"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+      xmlns:local="using:App53"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      Loaded="Page_Loaded"
+      mc:Ignorable="d">
+
+    <StackPanel Margin="0,50,0,0" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <TextBox x:Name="TestBox"
+                 Text="standard">
+            <interactivity:Interaction.Behaviors>
+                <behaviors:PropertyWatcherBehavior PropertyName="Text">
+                    <actions:GotoStateAction Element="{Binding ElementName=TestBox}" StateName="{Binding Text, ElementName=TestBox}" />
+                </behaviors:PropertyWatcherBehavior>
+            </interactivity:Interaction.Behaviors>
+        </TextBox>
+        <Button Click="Button_Click" Content="Reset"/>
+        <Hub x:Name="hubbie" Header="My Hub">
+            <HubSection Header="First">
+                <DataTemplate>
+                    <UserControl>
+                        <Border>
+                            <TextBlock x:Name="txtBlock" Text="{Binding Text, ElementName=TestBox}">
+                                <interactivity:Interaction.Behaviors>
+                                    <behaviors:PropertyWatcherBehavior PropertyName="Text">
+                                        <actions:GotoStateAction Element="{Binding ElementName=txtBlock}" StateName="{Binding Text, ElementName=txtBlock}" />
+                                    </behaviors:PropertyWatcherBehavior>
+                                </interactivity:Interaction.Behaviors>
+                            </TextBlock>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup>
+                                    <VisualState x:Name="standard" />
+                                    <VisualState x:Name="hidden">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="txtBlock" Storyboard.TargetProperty="Visibility">
+                                                <DiscreteObjectKeyFrame KeyTime="0">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <Visibility>Collapsed</Visibility>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="color">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="txtBlock" Storyboard.TargetProperty="Foreground">
+                                                <DiscreteObjectKeyFrame KeyTime="0">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <Color>Green</Color>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </Border>
+                    </UserControl>
+                </DataTemplate>
+            </HubSection>
+            <HubSection Header="Second">
+                <DataTemplate>
+                    <UserControl>
+                        <Border>
+                            <TextBlock x:Name="txtBlock" Text="{Binding Text, ElementName=TestBox}">
+                                <interactivity:Interaction.Behaviors>
+                                    <behaviors:PropertyWatcherBehavior PropertyName="Text">
+                                        <actions:GotoStateAction Element="{Binding ElementName=txtBlock}" StateName="{Binding Text, ElementName=txtBlock}" />
+                                    </behaviors:PropertyWatcherBehavior>
+                                </interactivity:Interaction.Behaviors>
+                            </TextBlock>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup>
+                                    <VisualState x:Name="standard" />
+                                    <VisualState x:Name="hidden">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="txtBlock" Storyboard.TargetProperty="Visibility">
+                                                <DiscreteObjectKeyFrame KeyTime="0">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <Visibility>Collapsed</Visibility>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="color">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="txtBlock" Storyboard.TargetProperty="Foreground">
+                                                <DiscreteObjectKeyFrame KeyTime="0">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <Color>Red</Color>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </Border>
+                    </UserControl>
+                </DataTemplate>
+            </HubSection>
+        </Hub>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="ApplicationViewStates">
+                <VisualState x:Name="standard" />
+                <VisualState x:Name="page">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="hubbie" Storyboard.TargetProperty="Background">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Color>Pink</Color>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+    </StackPanel>
+
+</Page>
